@@ -117,3 +117,5 @@ document.addEventListener('DOMContentLoaded', () => {
         switchSection('personal');
     }
 });
+
+ // <!-- FINAL -->
