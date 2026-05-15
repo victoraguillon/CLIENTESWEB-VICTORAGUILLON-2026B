@@ -119,6 +119,9 @@ body {
     gap: 2rem;
     z-index: 20;
     transition: transform 0.4s ease;
+    position: sticky;
+    top: 1.5rem;
+    align-self: flex-start;
 }
 
 .profile-section {
@@ -453,8 +456,12 @@ body {
     color: white;
 }
 
-.values-card p {
+..values-card p {
     color: var(--text-secondary);
+}
+
+.values-card {
+    margin-top: 1.5rem;
 }
 
 /* ==================== TIMELINE ==================== */
