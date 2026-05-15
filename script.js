@@ -111,6 +111,72 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
     });
 
+    // ----- SELECCIÓN DE AFICIONES -----
+    const hobbyCards = document.querySelectorAll('.hobby-card');
+
+    const createHobbyOverlay = (card) => {
+        const image = card.querySelector('img.hobby-photo');
+        const title = card.querySelector('h4').textContent;
+        const text = card.querySelector('p').innerHTML;
+        const iconHTML = card.querySelector('.hobby-icon-wrapper').innerHTML;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'hobby-overlay';
+        overlay.innerHTML = `
+            <div class="hobby-overlay-content" role="dialog" aria-modal="true" aria-label="${title}">
+                <button class="hobby-overlay-close" aria-label="Cerrar vista ampliada">×</button>
+                <div class="hobby-icon-wrapper">${iconHTML}</div>
+                <img src="${image?.src || ''}" alt="${image?.alt || title}" class="hobby-overlay-image">
+                <h3 class="hobby-overlay-title">${title}</h3>
+                <p class="hobby-overlay-text">${text}</p>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+        document.body.style.overflow = 'hidden';
+
+        const closeOverlay = () => {
+            document.body.style.overflow = '';
+            if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+            document.removeEventListener('keydown', onKeydown);
+        };
+
+        const onKeydown = (e) => {
+            if (e.key === 'Escape') {
+                closeOverlay();
+            }
+        };
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeOverlay();
+            }
+        });
+
+        const closeButton = overlay.querySelector('.hobby-overlay-close');
+        if (closeButton) {
+            closeButton.addEventListener('click', closeOverlay);
+        }
+
+        document.addEventListener('keydown', onKeydown);
+    };
+
+    hobbyCards.forEach(card => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+
+        card.addEventListener('click', () => {
+            createHobbyOverlay(card);
+        });
+
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                createHobbyOverlay(card);
+            }
+        });
+    });
+
     // ----- INICIALIZACIÓN -----
     const anyActive = document.querySelector('.content-section.active');
     if (!anyActive) {
