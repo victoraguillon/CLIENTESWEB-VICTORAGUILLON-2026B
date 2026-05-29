@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Formulario de inscripción</title>
+</head>
+<body>
+    <main>
+        <section>  
+            <h1>Formulario de inscripción</h1>
+            <form action="#" method="post">
+                <div>
+                    <label for="nombre">Nombre completo:* </label>
+                    <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Tu nombre completo"
+                        minlength="3"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="email">Correo electrónico:* </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                    >
+                </div>
+                <div>
+                    <label for="fecha-nacimiento">Fecha de nacimiento:* </label>
+                    <input
+                        type="date"
+                        id="fecha-nacimiento"
+                        name="fecha-nacimiento"
+                        required
+                    >
+                </div>
+                <div>
+                    <label for="edad">Edad:* </label>
+                    <input
+                        type="number"
+                        id="edad"
+                        name="edad"
+                        min="16"
+                        max="120"
+                        placeholder="Tu edad"
+                        required
+                    >
+                </div>
+                <div>
+                    <label for="Curso">Curso de interés:* </label>
+                    <select id="curso" name="curso" required>  
+                        <option value="">Selecciona un curso> </option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="javascript">JavaScript</option>
+                    </select>
+                </div>
+                <fieldset>
+                    <legend>Nivel *</legend>
+                    <div>
+                        <input type="radio" id="nivel-inicial" name="nivel" value="inicial" required>
+                        <label for="nivel-inicial">Inicial</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="nivel-intermedio" name="nivel" value="intermedio">
+                        <label for="nivel-intermedio">Intermedio</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="nivel-avanzado" name="nivel" value="avanzado">
+                        <label for="nivel-avanzado">Avanzado</label>
+                    </div>
+                </fieldset>
+                 <fieldset>
+                    <legend>Intereses</legend>
+                    <div>
+                        <input type="checkbox" id="interes-frontend" name="intereses" value="frontend">
+                        <label for="interes-frontend">Frontend</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="interes-backend" name="intereses" value="backend">
+                        <label for="interes-backend">Backend</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="interes-diseño" name="intereses" value="diseño">
+                        <label for="interes-diseño">Diseño</label>
+                    </div>
+                     <div>
+                        <input type="checkbox" id="interes-mobile" name="intereses" value="mobile">
+                        <label for="interes-mobile">Mobile</label>
+                    </div>
+                </fieldset>
+                <div>
+                    <label for="comentarios">Comentarios</label>
+                    <textarea 
+                        id="comentarios" 
+                        name="comentarios" 
+                        rows="4" 
+                        cols="50" 
+                        placeholder="Escribe aquí tus comentarios...">
+                    </textarea>
+                </div>
+                <div>
+                    <input type="checkbox" id="terminos" name="terminos" required>
+                    <label for="terminos">Acepto los términos y condiciones*</label>
+                </div>
+                <div>
+                    <button type="submit">Enviar</button>
+                    <button type="reset">Limpiar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
