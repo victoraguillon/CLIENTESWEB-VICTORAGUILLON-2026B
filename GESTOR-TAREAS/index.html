@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Tareas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <h1>Gestor de Tareas Personal</h1>
+      <p class="app-description">Administra tu lista de tareas, filtra por estado, guarda en localStorage y exporta/importa tu progreso.</p>
+      <div class="stats" aria-live="polite"></div>
+    </header>
+
+    <section class="controls">
+      <form id="task-form" class="task-form">
+        <label class="field-group">
+          <span>Nombre de tarea</span>
+          <input id="task-text" type="text" name="texto" placeholder="Ej. Terminar informe" autocomplete="off" required minlength="3">
+        </label>
+
+        <label class="field-group">
+          <span>Prioridad</span>
+          <select id="task-priority" name="prioridad">
+            <option value="media" selected>Media</option>
+            <option value="alta">Alta</option>
+            <option value="baja">Baja</option>
+          </select>
+        </label>
+
+        <button type="submit" class="primary-button">Agregar</button>
+      </form>
+
+      <div class="filters">
+        <div class="filter-buttons" role="group" aria-label="Filtros de tareas">
+          <button type="button" class="filter-button active" data-filter="todas">Todas</button>
+          <button type="button" class="filter-button" data-filter="pendientes">Pendientes</button>
+          <button type="button" class="filter-button" data-filter="completadas">Completadas</button>
+        </div>
+
+        <label class="sort-group">
+          <span>Ordenar por</span>
+          <select id="task-sort" aria-label="Ordenar tareas">
+            <option value="fecha-nueva">Fecha nueva</option>
+            <option value="fecha-vieja">Fecha vieja</option>
+            <option value="prioridad">Prioridad</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="import-export">
+        <button type="button" id="export-button" class="secondary-button">📥 Exportar JSON</button>
+        <button type="button" id="import-button" class="secondary-button">📤 Importar JSON</button>
+        <input id="import-file" type="file" accept="application/json" hidden>
+      </div>
+    </section>
+
+    <section class="task-board">
+      <div class="task-board-header">
+        <h2>Tareas</h2>
+        <p id="empty-message" class="empty-message">No hay tareas aún. Agrega tu primera tarea para comenzar.</p>
+      </div>
+      <ul id="task-list" class="task-list" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
