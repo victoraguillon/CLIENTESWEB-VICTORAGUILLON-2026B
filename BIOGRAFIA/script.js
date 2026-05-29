@@ -1,10 +1,6 @@
-/* =============================================
-   LÓGICA DE NAVEGACIÓN, MENÚ MÓVIL, FORMULARIO
-   Y EFECTO DE CURSOR
-   ============================================= */
+
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ----- ELEMENTOS DEL DOM -----
     const navButtons = document.querySelectorAll('.nav-btn');
     const sections = document.querySelectorAll('.content-section');
     const sidebar = document.getElementById('sidebar');
@@ -13,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     const formFeedback = document.getElementById('formFeedback');
 
-    // ----- CAMBIO DE SECCIÓN ACTIVA -----
+    
     function switchSection(sectionId) {
         sections.forEach(section => section.classList.remove('active'));
         navButtons.forEach(btn => {
@@ -90,28 +86,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ----- FORMULARIO DE CONTACTO (SIMULACIÓN) -----
+    // ----- FORMULARIO DE CONTACTO (envío por mailto) -----
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim() || 'Nuevo mensaje desde el sitio';
+        const message = document.getElementById('message').value.trim();
         const submitBtn = document.getElementById('submitBtn');
         const originalText = submitBtn.querySelector('.btn-text').textContent;
-        submitBtn.querySelector('.btn-text').textContent = 'Enviando...';
+
+        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=victormaguillono2b@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nombre: ${name}\nCorreo: ${email}\n\n${message}`)}`;
+
+        submitBtn.querySelector('.btn-text').textContent = 'Abriendo Gmail...';
         submitBtn.disabled = true;
 
+        window.open(gmailLink, '_blank', 'noopener,noreferrer');
+
         setTimeout(() => {
-            formFeedback.innerHTML = '<p style="color: var(--success);"><i class="fa-solid fa-circle-check"></i> ¡Mensaje enviado con éxito! Gracias por contactarme.</p>';
-            contactForm.reset();
+            formFeedback.innerHTML = '<p style="color: var(--success);"><i class="fa-solid fa-circle-check"></i> Se abrió Gmail en una nueva pestaña. Completa y envía el mensaje para contactarme.</p>';
             submitBtn.querySelector('.btn-text').textContent = originalText;
             submitBtn.disabled = false;
-
-            setTimeout(() => {
-                formFeedback.innerHTML = '';
-            }, 5000);
         }, 1500);
     });
 
-    // ----- SELECCIÓN DE AFICIONES -----
     const hobbyCards = document.querySelectorAll('.hobby-card');
 
     const createHobbyOverlay = (card) => {
@@ -177,11 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ----- INICIALIZACIÓN -----
+  
     const anyActive = document.querySelector('.content-section.active');
     if (!anyActive) {
         switchSection('personal');
     }
 });
 
- // <!-- FINAL -->

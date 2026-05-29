@@ -456,7 +456,7 @@ body {
     color: white;
 }
 
-..values-card p {
+.values-card p {   
     color: var(--text-secondary);
 }
 
