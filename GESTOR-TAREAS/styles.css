@@ -1,0 +1,356 @@
+﻿:root {
+  --bg-primary: #050b1a;
+  --bg-secondary: #0b1323;
+  --surface: rgba(12, 25, 55, 0.75);
+  --surface-strong: rgba(12, 25, 55, 0.95);
+  --surface-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #edf2ff;
+  --text-secondary: #b8c3e6;
+  --accent: #4d8cff;
+  --accent-strong: #5aa0ff;
+  --accent-dark: #2563eb;
+  --success: #4ade80;
+  --warning: #facc15;
+  --danger: #fb7185;
+  --radius-xl: 1.8rem;
+  --radius-lg: 1.1rem;
+  --radius-md: 0.9rem;
+  --shadow-glow: 0 24px 60px rgba(0, 60, 140, 0.25);
+  --transition: 0.22s ease;
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  background: radial-gradient(circle at top left, rgba(77, 140, 255, 0.12), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(84, 211, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, #07101f 0%, #0d192d 45%, #0a1327 100%);
+  color: var(--text-primary);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px clamp(18px, 4vw, 32px);
+}
+
+.app-header,
+.task-form,
+.task-board {
+  background: rgba(8, 18, 40, 0.88);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-glow);
+}
+
+.app-header {
+  padding: 32px 32px 28px;
+}
+
+.app-header h1 {
+  margin-bottom: 12px;
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: -0.04em;
+}
+
+.app-description,
+.stats,
+.empty-message {
+  color: var(--text-secondary);
+}
+
+.stats {
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.controls {
+  display: grid;
+  gap: 22px;
+  margin: 26px 0;
+}
+
+.task-form {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+}
+
+.field-group,
+.sort-group {
+  display: grid;
+  gap: 10px;
+}
+
+.field-group span,
+.sort-group span {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.task-form input,
+.task-form select,
+.sort-group select {
+  width: 100%;
+  min-height: 46px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0 16px;
+  background: rgba(18, 33, 63, 0.9);
+  color: var(--text-primary);
+}
+
+.task-form input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.primary-button,
+.secondary-button,
+.filter-button {
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.primary-button {
+  min-height: 48px;
+  padding: 0 24px;
+  color: white;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 18px 35px rgba(38, 86, 196, 0.28);
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #57a0ff, #4074d9);
+}
+
+.secondary-button {
+  min-height: 46px;
+  padding: 0 20px;
+  color: var(--accent);
+  background: rgba(77, 140, 255, 0.08);
+}
+
+.secondary-button:hover,
+.filter-button:hover {
+  transform: translateY(-1px);
+}
+
+.import-export {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: grid;
+  gap: 14px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.filter-button.active {
+  background: linear-gradient(135deg, rgba(77, 140, 255, 0.16), rgba(74, 170, 255, 0.24));
+  color: white;
+  border-color: rgba(77, 140, 255, 0.32);
+}
+
+.sort-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.task-board {
+  padding: 24px;
+}
+
+.task-board-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.task-board-header h2 {
+  margin: 0;
+}
+
+.empty-message {
+  margin: 0;
+  font-style: italic;
+}
+
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.task-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 20px;
+  border-radius: 20px;
+  background: rgba(10, 24, 46, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.task-item.completed {
+  background: rgba(18, 40, 72, 0.92);
+}
+
+.task-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.task-data {
+  display: grid;
+  gap: 10px;
+}
+
+.task-text {
+  font-size: 1rem;
+  color: var(--text-primary);
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.task-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.priority-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.priority-baja {
+  background: rgba(74, 222, 128, 0.14);
+  color: #4ade80;
+}
+
+.priority-media {
+  background: rgba(250, 204, 21, 0.16);
+  color: #facc15;
+}
+
+.priority-alta {
+  background: rgba(251, 113, 133, 0.14);
+  color: #fb7185;
+}
+
+.task-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-actions button {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.task-actions button:hover {
+  border-color: rgba(77, 140, 255, 0.35);
+  color: var(--accent);
+}
+
+.edit-input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(12, 22, 46, 0.9);
+  color: var(--text-primary);
+}
+
+@media (max-width: 780px) {
+  .task-item {
+    grid-template-columns: auto 1fr;
+  }
+
+  .task-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 520px) {
+  .controls,
+  .task-board-header {
+    gap: 14px;
+  }
+
+  .filter-buttons,
+  .import-export,
+  .sort-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
